@@ -50,7 +50,7 @@ where
     /// assert_eq!(
     ///     out_data,
     ///     vec![(false, 1), (false, 2), (false, 3), (false, 5), (true, 99)]
-    /// )
+    /// );
     /// ```
     fn mark_last(self) -> MarkLast<I>;
 }
@@ -69,7 +69,7 @@ where
 
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::MarkLastIterator;
 
     #[test]
     fn marks_last() {
@@ -78,26 +78,26 @@ mod test {
         assert_eq!(
             out_data,
             vec![(false, 1), (false, 2), (false, 3), (false, 5), (true, 99)]
-        )
+        );
     }
 
     #[test]
-    fn marks_nothing_empty() {
+    fn empty_collection() {
         let in_data: [i32; 0] = [];
         let out_data: Vec<_> = in_data.iter().mark_last().collect();
-        assert_eq!(out_data, vec![])
+        assert_eq!(out_data, vec![]);
     }
 
     #[test]
     fn marks_last_length_one() {
         let in_data = vec![3];
         let out_data: Vec<_> = in_data.into_iter().mark_last().collect();
-        assert_eq!(out_data, vec![(true, 3)])
+        assert_eq!(out_data, vec![(true, 3)]);
     }
 
     #[test]
     fn marks_nothing_infinite() {
         let in_data = 0..;
-        assert!(in_data.mark_last().take(1_000_000).all(|(last, _)| !last))
+        assert!(in_data.mark_last().take(1_000_000).all(|(last, _)| !last));
     }
 }
