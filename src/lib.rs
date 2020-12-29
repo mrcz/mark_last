@@ -70,6 +70,7 @@ where
 #[cfg(test)]
 mod test {
     use super::*;
+
     #[test]
     fn marks_last() {
         let in_data = vec![1, 2, 3, 5, 99];
@@ -81,7 +82,7 @@ mod test {
     }
 
     #[test]
-    fn marks_last_empty() {
+    fn marks_nothing_empty() {
         let in_data: [i32; 0] = [];
         let out_data: Vec<_> = in_data.iter().mark_last().collect();
         assert_eq!(out_data, vec![])

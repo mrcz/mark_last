@@ -1,7 +1,7 @@
 [package]
 name = "mark_last"
 description = "Simple extension to rust iterator's to mark the last element of an iterator"
-version = "0.9.0"
+version = "0.9.1"
 authors = ["Marcus Svensson <marcus@lincopia.com>"]
 edition = "2018"
 license = "MIT"

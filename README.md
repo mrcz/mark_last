@@ -5,7 +5,7 @@ A simple extension to rust iterators which gives the next value as well as a boo
 The iterator returned yields pairs `(b, val)`, where `b` is true if this is the last value and `val` is the value returned by the iterator.
 
 ### Usage
-Add `mark_last = "0.9.0"` to the dependencies section of your Cargo.toml file, and use it like so:
+Add `mark_last = "0.9.1"` to the dependencies section of your Cargo.toml file, and use it like so:
 
 ```rust
 use mark_last::MarkLastIterator;
