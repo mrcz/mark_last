@@ -1,13 +1,13 @@
 use std::iter::Peekable;
 
-pub struct MarkLast<I>
-where
-    I: Iterator,
-{
+/// This `struct` is created by the [`mark_last`] method on [`MarkLastIterator`]. See its
+/// documentation for more.
+#[must_use = "iterators are lazy and do nothing unless consumed"]
+pub struct MarkLast<I: Iterator> {
     iter: Peekable<I>,
 }
 
-impl<I> MarkLast<I>
+impl<I: Iterator> MarkLast<I>
 where
     I: Iterator,
 {
@@ -18,10 +18,7 @@ where
     }
 }
 
-impl<I> Iterator for MarkLast<I>
-where
-    I: Iterator,
-{
+impl<I: Iterator> Iterator for MarkLast<I> {
     type Item = (bool, I::Item);
 
     fn next(&mut self) -> Option<(bool, I::Item)> {
@@ -31,10 +28,7 @@ where
     }
 }
 
-pub trait MarkLastIterator<I>
-where
-    I: Iterator,
-{
+pub trait MarkLastIterator<I: Iterator> {
     /// Creates an iterator which gives the next value as well as a boolean indicating if this is
     /// the last value of the iterator.
     ///
@@ -55,14 +49,8 @@ where
     fn mark_last(self) -> MarkLast<I>;
 }
 
-impl<I> MarkLastIterator<I> for I
-where
-    I: Iterator,
-{
-    fn mark_last(self) -> MarkLast<Self>
-    where
-        Self: Sized,
-    {
+impl<I: Iterator> MarkLastIterator<I> for I {
+    fn mark_last(self) -> MarkLast<Self> {
         MarkLast::new(self)
     }
 }
